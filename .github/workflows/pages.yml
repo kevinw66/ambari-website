@@ -32,22 +32,23 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: recursive
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v1
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Build website
+      - name: Build Website
         run: yarn build
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./build
